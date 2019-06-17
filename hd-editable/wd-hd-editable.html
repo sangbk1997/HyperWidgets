@@ -1,0 +1,39 @@
+<pre class="rich-text-content check-list-complete-percent-content editable-text"
+     [ngStyle]="{'display': statusProcessUpdate ? 'none' : 'inline-block'}"
+     *ngIf="!isEmptyValue && isUseSafeHtml && !hiddenProperty"
+     (click)="update($event);">{{model[property]}}
+</pre>
+<div class="rich-text-content check-list-complete-percent-content editable-text"
+     [ngStyle]="{'display': statusProcessUpdate ? 'none' : 'inline-block'}"
+     *ngIf="!isEmptyValue && !isUseSafeHtml && !hiddenProperty"
+     [innerHTML]="model[property] | bypassSecurityTrustHtml" (click)="update($event);">
+</div>
+<div *ngIf="statusProcessUpdate" class="check-list-complete-percent-update-box">
+  <form hydValidation (hydSubmit)="doSubmit()" [configs]="configs"
+        [hydModel]="model">
+    <div hyd-dynamic [data]="data" [component]="component"></div>
+    <div>
+      <button type="submit" class="btn btn-primary">
+        {{'ipm.common.update'|printMsg}}
+      </button>
+      <a class="btn btn-secondary" (click)="cancelUpdate();">
+        {{'ipm.common.close'|printMsg}}
+      </a>
+      <a [hidden]="!isDelete" class="btn btn-delete pull-right" (click)="doDelete()">
+        {{'ipm.common.delete'|printMsg}}
+      </a>
+    </div>
+  </form>
+</div>
+<div class="row-content no-p ng-scope check-list-complete-percent-content"
+     [ngStyle]="{'display': (!statusProcessUpdate) ? 'inline-block' : 'none'}"
+     *ngIf="isEmptyValue"
+     (click)="update($event)">
+  <span class="drag-drop-box">
+    <div class="dropbox">
+      <span *ngIf="isManualPlaceholder" class="text-placeholder">{{textValue}}</span>
+      <span *ngIf="!isManualPlaceholder"
+            class="text-placeholder">{{'ipm.common.placeholder.empty.input'|printMsg}}</span>
+    </div>
+  </span>
+</div>

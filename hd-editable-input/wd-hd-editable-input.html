@@ -1,0 +1,36 @@
+<div *ngIf="!statusProcessUpdate && !isEmptyValue" (click)="update();">
+  {{model[property]}}
+</div>
+<div *ngIf="statusProcessUpdate">
+  <form hydValidation (hydSubmit)="doSubmit()" [configs]="configs"
+        [hydModel]="model">
+    <div class="hd-input input">
+      <input #inputData type="text" [(ngModel)]="model[property]" class="hd-value-input" attr.hydname="{{hydname}}"
+             format="number"
+             [disabled]="disabled"
+             (focus)="linkOnFocus()"
+             [name]="property"
+             placeholder="{{emptyPlaceholder}}"
+             (keyup)="linkOnKeyup()">
+      <a class="hd-value-remove common-action" [disabled]="disabled" data-icon="i-remove-16" [hidden]="hasEmptyValue"
+         (click)="resetValue()"></a>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">
+        {{'ipm.common.update'|printMsg}}
+      </button>
+      <button class="btn btn-secondary" (click)="cancelUpdate();">
+        {{'ipm.common.close'|printMsg}}
+      </button>
+    </div>
+  </form>
+</div>
+<div class="row-content no-p ng-scope"
+     *ngIf="!statusProcessUpdate && isEmptyValue"
+     (click)="update()">
+                <span class="drag-drop-box">
+                        <div class="dropbox">
+                            <span class="text-placeholder">{{'ipm.common.placeholder.empty.input'|printMsg}}</span>
+                        </div>
+                </span>
+</div>

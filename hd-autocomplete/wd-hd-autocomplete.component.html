@@ -1,0 +1,16 @@
+<div class="hd-autocomplete input" [ngClass]="{'disabled': disabled, 'advanced' : advanceSearchConfig}">
+  <i class="icon-prepend {{iconPrepend}}"></i>
+  <input [id]="inputId" #inputData type="text" [(ngModel)]="searchText" class="hd-value-input"
+         [disabled]="disabled" placeholder="{{emptyPlaceholder}}" attr.hydname="{{hydname}}"
+         (click)="resetDSourceClone()" (keyup)="onKeyup($event)" (keydown)="onKeydown($event)" (focus)="onFocus()">
+  <a class="common-action emp-advanced-search" data-icon="advance-search-emp-24" [disabled]="disabled"
+     [hidden]="!advanceSearchConfig" (click)="showAdvance(advanceSearchConfig, $event)"></a>
+  <div #suggestBlock class="hd-suggest">
+    <div *ngFor="let item of dSourceClone"
+         class="hd-suggest-item common-action" [ngClass]="{'active' : searchText == item[fieldTitle]}"
+         (click)="chooseItemValue(item, true)">
+      <!--{@suggest-item-template}-->
+      <span hyd-dynamic [data]="{data: item, title: fieldTitle}" [component]="component"></span>
+    </div>
+  </div>
+</div>

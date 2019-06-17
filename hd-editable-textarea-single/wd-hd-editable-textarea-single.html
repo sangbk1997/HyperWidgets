@@ -1,0 +1,32 @@
+<div class="editable-text" *ngIf="!statusProcessUpdate && !isEmptyValue" (click)="update();">
+  {{model[property]}}
+</div>
+<div *ngIf="statusProcessUpdate">
+  <div class="textarea">
+    <textarea #textArea [style.min-height.px]="75" [(ngModel)]="model[property]"
+              (change)="linkOnChange()"
+              [disabled]="disabled"
+              attr.hydname="{{hydname}}"
+              placeholder="{{emptyPlaceholder}}"
+              (keyup)="autoGrow()"
+              (keydown)="onKeyDownEvent($event)"></textarea>
+  </div>
+  <div>
+    <button class="btn btn-primary"
+            (click)="doSubmit()">
+      {{'ipm.common.update'|printMsg}}
+    </button>
+    <button class="btn btn-secondary" (click)="cancelUpdate();">
+      {{'ipm.common.close'|printMsg}}
+    </button>
+  </div>
+</div>
+<div class="row-content no-p ng-scope"
+     *ngIf="!statusProcessUpdate && isEmptyValue"
+     (click)="update()">
+      <span class="drag-drop-box">
+        <div class="dropbox">
+            <span class="text-placeholder">{{'ipm.common.placeholder.empty.input'|printMsg}}</span>
+        </div>
+      </span>
+</div>

@@ -1,0 +1,15 @@
+<div class="hd-input input hd-wrapper" [ngClass]="{'disabled': disabled}">
+  <i class="icon-prepend {{iconPrepend}}" *ngIf="iconPrepend != 'no-icon'"></i>
+  <input #inputData
+         class="hd-value-input"
+         type="{{type}}"
+         [(ngModel)]="model[property]"
+         attr.commandvalue="{{commandvalue}}"
+         attr.hydname="{{hydname}}"
+         format="number"
+         (focus)="linkOnFocus()"
+         [disabled]="disabled" placeholder="{{emptyPlaceholder}}"
+         (keyup)="linkOnKeyup()">
+  <a class="hd-value-remove common-action" data-icon="i-remove-16" [disabled]="disabled" [hidden]="hasEmptyValue"
+     (click)="resetValue()"></a>
+</div>

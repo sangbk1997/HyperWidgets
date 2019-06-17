@@ -1,0 +1,12 @@
+<label class="checkbox semi-bold" *ngIf="showCheckAll">
+  <input type="checkbox" [checked]="model[property] != null && model[property].length == dSource.length"
+         (click)="checkAll()"
+         [disabled]="disabled">
+  <i></i>{{checkAllLabel}}
+</label>
+<label class="checkbox {{customStyle}}" *ngFor="let option of dSource">
+  <input type="checkbox" value="{{option.value}}" [checked]="isItemValueSelected(option)"
+         (click)="toggleItemValue(option)"
+         [disabled]="disabled">
+  <i></i>{{option[fieldTitle]}}
+</label>

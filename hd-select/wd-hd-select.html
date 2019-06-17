@@ -1,0 +1,9 @@
+<div class="select" [ngClass]="{'disabled': disabled}">
+  <i class="icon-prepend fa fa-list"></i>
+  <select #selectElement [(ngModel)]="model[property]"
+          (change)="linkOnSave()"
+          [disabled]="disabled" attr.hydname="{{hydname}}">
+    <option *ngIf="acceptEmptyValue" [value]="emptyValue" selected>{{emptyPlaceholder}}</option>
+    <option *ngFor="let option of dSource" [value]="option[fieldValue]">{{option[fieldTitle]}}</option>
+  </select>
+</div>

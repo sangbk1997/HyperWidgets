@@ -1,0 +1,16 @@
+<!--<ly-loading loading="dAdapter.executing"></ly-loading>-->
+<div class="hsm-item" *ngFor="let item of itemListSelected;">
+    <span class="hsm-item-title">{{item[fieldTitle]}}</span>
+    <i data-icon="i-remove-16" class="common-action" (click)="removeItemValue(item)"></i>
+    <span class="hsm-separator">{{separatorTitle}}</span>
+</div>
+<input [id]="inputSearch" #searchValue type="text" [(ngModel)]="searchText" class="hd-value-search"
+       placeholder="{{emptyPlaceholder}}" dom-watcher="inputScale" (click)="resetDSourceClone()" (focus)="toggleSuggest(true)" (keyup)="changeSearchText()">
+<div [id]="suggestBox" class="hd-suggest normal-hide">
+    <div *ngFor="let item of dSourceClone"
+         class="hd-suggest-item common-action {{markElement}}"
+         [ngClass]="{'selected': isItemValueSelected(item)}"
+         (click)="toggleItemValue(item, true)">
+        <span class="hd-suggest-item-title {{markElement}}">{{item[fieldTitle]}}</span>
+    </div>
+</div>

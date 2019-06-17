@@ -1,0 +1,8 @@
+<div class="select" [ngClass]="{'disabled': disabled}">
+  <select [(ngModel)]="value" class="padding-left-6"
+          ng-options="option[fieldValue] as option[fieldTitle] for option in dSource"
+          (change)="linkOnSave()"
+          [disabled]="disabled" hydname="{{hydname}}">
+    <option value *ngIf="hasEmptyValue">{{::emptyPlaceholder}}</option>
+  </select>
+</div>

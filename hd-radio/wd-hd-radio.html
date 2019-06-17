@@ -1,0 +1,7 @@
+<label class="radio" *ngFor="let option of dSource">
+  <input type="radio" class="common3"
+         name="{{groupName}}" [value]="option[fieldValue]"
+         (change)="chooseItemValue(option)" [checked]="option[fieldValue]==model[property]"
+         [disabled]="disabled">
+  <i></i>{{option[fieldTitle]}}
+</label>

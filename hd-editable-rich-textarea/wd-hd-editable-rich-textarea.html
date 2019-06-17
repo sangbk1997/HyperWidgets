@@ -1,0 +1,24 @@
+<div *ngIf="!statusProcessUpdate && !isEmptyValue"
+     [innerHTML]="model[property] | bypassSecurityTrustHtml" (click)="update();">
+</div>
+<div *ngIf="statusProcessUpdate">
+  <hd-rich-textarea [model]="model" [property]="property"></hd-rich-textarea>
+  <div>
+    <button class="btn btn-primary"
+            (click)="doSubmit()">
+      {{'ipm.common.update'|printMsg}}
+    </button>
+    <button class="btn btn-secondary" (click)="cancelUpdate();">
+      {{'ipm.common.close'|printMsg}}
+    </button>
+  </div>
+</div>
+<div class="row-content no-p ng-scope"
+     *ngIf="!statusProcessUpdate && isEmptyValue"
+     (click)="update()">
+                <span class="drag-drop-box">
+                        <div class="dropbox">
+                            <span class="text-placeholder">{{'ipm.common.placeholder.empty.input'|printMsg}}</span>
+                        </div>
+                </span>
+</div>
